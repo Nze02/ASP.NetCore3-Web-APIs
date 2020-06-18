@@ -1,0 +1,12 @@
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\LoggerService\bin\Debug\netcoreapp3.0\Contracts.dll
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\LoggerService\obj\Debug\netcoreapp3.0\LoggerService.csprojAssemblyReference.cache
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\LoggerService\obj\Debug\netcoreapp3.0\LoggerService.AssemblyInfoInputs.cache
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\LoggerService\obj\Debug\netcoreapp3.0\LoggerService.AssemblyInfo.cs
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\LoggerService\bin\Debug\netcoreapp3.0\NLog.config
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\LoggerService\bin\Debug\netcoreapp3.0\LoggerService.deps.json
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\LoggerService\bin\Debug\netcoreapp3.0\LoggerService.dll
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\LoggerService\bin\Debug\netcoreapp3.0\LoggerService.pdb
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\LoggerService\bin\Debug\netcoreapp3.0\Contracts.pdb
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\LoggerService\obj\Debug\netcoreapp3.0\LoggerService.csproj.CopyComplete
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\LoggerService\obj\Debug\netcoreapp3.0\LoggerService.dll
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\LoggerService\obj\Debug\netcoreapp3.0\LoggerService.pdb

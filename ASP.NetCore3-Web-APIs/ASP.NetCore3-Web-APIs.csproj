@@ -5,4 +5,8 @@
     <RootNamespace>ASP.NetCore3_Web_APIs</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LoggerService\LoggerService.csproj" />
+  </ItemGroup>
+
 </Project>

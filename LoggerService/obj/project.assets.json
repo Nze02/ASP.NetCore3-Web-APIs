@@ -121,10 +121,11 @@
           "NLog.Schema": "4.7.2"
         },
         "contentFiles": {
-          "contentFiles/any/any/_._": {
+          "contentFiles/any/any/NLog.config": {
             "buildAction": "None",
             "codeLanguage": "any",
-            "copyToOutput": false
+            "copyToOutput": true,
+            "outputPath": "NLog.config"
           }
         }
       },
@@ -159,22 +160,6 @@
         },
         "runtime": {
           "bin/placeholder/Contracts.dll": {}
-        }
-      },
-      "LoggerService/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.0",
-        "dependencies": {
-          "Contracts": "1.0.0",
-          "NLog": "4.7.2",
-          "NLog.Config": "4.7.2",
-          "NLog.Extensions.Logging": "1.6.4"
-        },
-        "compile": {
-          "bin/placeholder/LoggerService.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/LoggerService.dll": {}
         }
       }
     }
@@ -401,16 +386,14 @@
       "type": "project",
       "path": "../Contracts/Contracts.csproj",
       "msbuildProject": "../Contracts/Contracts.csproj"
-    },
-    "LoggerService/1.0.0": {
-      "type": "project",
-      "path": "../LoggerService/LoggerService.csproj",
-      "msbuildProject": "../LoggerService/LoggerService.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.0": [
-      "LoggerService >= 1.0.0"
+      "Contracts >= 1.0.0",
+      "NLog >= 4.7.2",
+      "NLog.Config >= 4.7.2",
+      "NLog.Extensions.Logging >= 1.6.4"
     ]
   },
   "packageFolders": {
@@ -419,11 +402,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Emmanuel Nzekwe\\source\\repos\\ASP.NetCore3-Web-APIs\\ASP.NetCore3-Web-APIs\\ASP.NetCore3-Web-APIs.csproj",
-      "projectName": "ASP.NetCore3-Web-APIs",
-      "projectPath": "C:\\Users\\Emmanuel Nzekwe\\source\\repos\\ASP.NetCore3-Web-APIs\\ASP.NetCore3-Web-APIs\\ASP.NetCore3-Web-APIs.csproj",
+      "projectUniqueName": "C:\\Users\\Emmanuel Nzekwe\\source\\repos\\ASP.NetCore3-Web-APIs\\LoggerService\\LoggerService.csproj",
+      "projectName": "LoggerService",
+      "projectPath": "C:\\Users\\Emmanuel Nzekwe\\source\\repos\\ASP.NetCore3-Web-APIs\\LoggerService\\LoggerService.csproj",
       "packagesPath": "C:\\Users\\Emmanuel Nzekwe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Emmanuel Nzekwe\\source\\repos\\ASP.NetCore3-Web-APIs\\ASP.NetCore3-Web-APIs\\obj\\",
+      "outputPath": "C:\\Users\\Emmanuel Nzekwe\\source\\repos\\ASP.NetCore3-Web-APIs\\LoggerService\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Emmanuel Nzekwe\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -439,8 +422,8 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "C:\\Users\\Emmanuel Nzekwe\\source\\repos\\ASP.NetCore3-Web-APIs\\LoggerService\\LoggerService.csproj": {
-              "projectPath": "C:\\Users\\Emmanuel Nzekwe\\source\\repos\\ASP.NetCore3-Web-APIs\\LoggerService\\LoggerService.csproj"
+            "C:\\Users\\Emmanuel Nzekwe\\source\\repos\\ASP.NetCore3-Web-APIs\\Contracts\\Contracts.csproj": {
+              "projectPath": "C:\\Users\\Emmanuel Nzekwe\\source\\repos\\ASP.NetCore3-Web-APIs\\Contracts\\Contracts.csproj"
             }
           }
         }
@@ -453,6 +436,20 @@
     },
     "frameworks": {
       "netcoreapp3.0": {
+        "dependencies": {
+          "NLog": {
+            "target": "Package",
+            "version": "[4.7.2, )"
+          },
+          "NLog.Config": {
+            "target": "Package",
+            "version": "[4.7.2, )"
+          },
+          "NLog.Extensions.Logging": {
+            "target": "Package",
+            "version": "[1.6.4, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
@@ -464,9 +461,6 @@
         "assetTargetFallback": true,
         "warn": true,
         "frameworkReferences": {
-          "Microsoft.AspNetCore.App": {
-            "privateAssets": "none"
-          },
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }

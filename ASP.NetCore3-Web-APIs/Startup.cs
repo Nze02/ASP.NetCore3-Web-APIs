@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ASP.NetCore3_Web_APIs.Extensions;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NLog;
 
 namespace ASP.NetCore3_Web_APIs
 {
@@ -19,6 +21,7 @@ namespace ASP.NetCore3_Web_APIs
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "\\nlog.config"));
             Configuration = configuration;
         }
 
@@ -29,6 +32,7 @@ namespace ASP.NetCore3_Web_APIs
         {
             services.ConfigureCors();
             services.ConfigureIISIntegration();
+            services.ConfigureLoggerService();
 
             services.AddControllers();
         }

@@ -1,0 +1,8 @@
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Contracts\bin\Debug\netcoreapp3.0\Contracts.deps.json
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Contracts\bin\Debug\netcoreapp3.0\Contracts.dll
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Contracts\bin\Debug\netcoreapp3.0\Contracts.pdb
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Contracts\obj\Debug\netcoreapp3.0\Contracts.csprojAssemblyReference.cache
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Contracts\obj\Debug\netcoreapp3.0\Contracts.AssemblyInfoInputs.cache
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Contracts\obj\Debug\netcoreapp3.0\Contracts.AssemblyInfo.cs
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Contracts\obj\Debug\netcoreapp3.0\Contracts.dll
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Contracts\obj\Debug\netcoreapp3.0\Contracts.pdb
