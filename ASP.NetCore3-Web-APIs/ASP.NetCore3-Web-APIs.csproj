@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>ASP.NetCore3_Web_APIs</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+  </ItemGroup>
+
+</Project>
