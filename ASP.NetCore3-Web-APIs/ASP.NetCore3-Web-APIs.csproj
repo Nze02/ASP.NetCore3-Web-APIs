@@ -5,7 +5,4 @@
     <RootNamespace>ASP.NetCore3_Web_APIs</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-  </ItemGroup>
-
 </Project>
