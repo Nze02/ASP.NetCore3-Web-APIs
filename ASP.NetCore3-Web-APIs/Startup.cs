@@ -33,6 +33,7 @@ namespace ASP.NetCore3_Web_APIs
             services.ConfigureCors();
             services.ConfigureIISIntegration();
             services.ConfigureLoggerService();
+            services.ConfigureSqlContext(Configuration);
 
             services.AddControllers();
         }
