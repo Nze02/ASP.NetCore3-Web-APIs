@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,5 +37,8 @@ namespace ASP.NetCore3_Web_APIs.Extensions
             services.AddDbContext<RepositoryContext>(opts =>
             opts.UseSqlServer(configuration.GetConnectionString("sqlConnection"), b =>
             b.MigrationsAssembly("ASP.NetCore3-Web-APIs")));
+
+        public static void ConfigureRepositoryManager(this IServiceCollection services) =>
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
     }
 }

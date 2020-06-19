@@ -34,6 +34,7 @@ namespace ASP.NetCore3_Web_APIs
             services.ConfigureIISIntegration();
             services.ConfigureLoggerService();
             services.ConfigureSqlContext(Configuration);
+            services.ConfigureRepositoryManager();
 
             services.AddControllers();
         }

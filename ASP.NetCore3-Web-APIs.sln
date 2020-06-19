@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29318.209
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NetCore3-Web-APIs", "ASP.NetCore3-Web-APIs\ASP.NetCore3-Web-APIs.csproj", "{C9D31E7D-7FE6-4BB3-9045-EA1BDAE452DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NetCore3-Web-APIs", "ASP.NetCore3-Web-APIs\ASP.NetCore3-Web-APIs.csproj", "{C9D31E7D-7FE6-4BB3-9045-EA1BDAE452DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{BB970658-D3F6-4C59-A120-C789D1A52836}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts\Contracts.csproj", "{BB970658-D3F6-4C59-A120-C789D1A52836}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerService", "LoggerService\LoggerService.csproj", "{E1E3FC01-C815-48B2-98A5-2986ABBA36A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggerService", "LoggerService\LoggerService.csproj", "{E1E3FC01-C815-48B2-98A5-2986ABBA36A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{D9139498-405A-4998-A521-8A1A7290A121}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{D9139498-405A-4998-A521-8A1A7290A121}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{52B73E22-DD47-460D-99B1-18A3D53E6148}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D9139498-405A-4998-A521-8A1A7290A121}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9139498-405A-4998-A521-8A1A7290A121}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9139498-405A-4998-A521-8A1A7290A121}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52B73E22-DD47-460D-99B1-18A3D53E6148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52B73E22-DD47-460D-99B1-18A3D53E6148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52B73E22-DD47-460D-99B1-18A3D53E6148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52B73E22-DD47-460D-99B1-18A3D53E6148}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
