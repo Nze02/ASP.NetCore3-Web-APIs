@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASP.NetCore3_Web_APIs.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20200618141543_DBCreation")]
-    partial class DBCreation
+    [Migration("20200619094028_MyDbCreation")]
+    partial class MyDbCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
