@@ -27,9 +27,6 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\Users\\Emmanuel Nzekwe\\source\\repos\\ASP.NetCore3-Web-APIs\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\Emmanuel Nzekwe\\source\\repos\\ASP.NetCore3-Web-APIs\\Entities\\Entities.csproj"
-              },
               "C:\\Users\\Emmanuel Nzekwe\\source\\repos\\ASP.NetCore3-Web-APIs\\LoggerService\\LoggerService.csproj": {
                 "projectPath": "C:\\Users\\Emmanuel Nzekwe\\source\\repos\\ASP.NetCore3-Web-APIs\\LoggerService\\LoggerService.csproj"
               },
@@ -63,6 +60,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.5, )"
+            },
+            "Microsoft.Extensions.Logging.Debug": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.0.0, )"
             }
           },
           "imports": [
@@ -109,7 +114,11 @@
         },
         "frameworks": {
           "netcoreapp3.0": {
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Emmanuel Nzekwe\\source\\repos\\ASP.NetCore3-Web-APIs\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\Emmanuel Nzekwe\\source\\repos\\ASP.NetCore3-Web-APIs\\Entities\\Entities.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

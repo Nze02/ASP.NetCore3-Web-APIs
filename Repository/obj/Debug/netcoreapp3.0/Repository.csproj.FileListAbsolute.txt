@@ -1,0 +1,13 @@
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Repository\bin\Debug\netcoreapp3.0\Repository.deps.json
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Repository\bin\Debug\netcoreapp3.0\Repository.dll
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Repository\bin\Debug\netcoreapp3.0\Repository.pdb
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Repository\bin\Debug\netcoreapp3.0\Contracts.dll
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Repository\bin\Debug\netcoreapp3.0\Entities.dll
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Repository\bin\Debug\netcoreapp3.0\Contracts.pdb
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Repository\bin\Debug\netcoreapp3.0\Entities.pdb
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Repository\obj\Debug\netcoreapp3.0\Repository.csprojAssemblyReference.cache
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Repository\obj\Debug\netcoreapp3.0\Repository.AssemblyInfoInputs.cache
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Repository\obj\Debug\netcoreapp3.0\Repository.AssemblyInfo.cs
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Repository\obj\Debug\netcoreapp3.0\Repository.csproj.CopyComplete
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Repository\obj\Debug\netcoreapp3.0\Repository.dll
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Repository\obj\Debug\netcoreapp3.0\Repository.pdb

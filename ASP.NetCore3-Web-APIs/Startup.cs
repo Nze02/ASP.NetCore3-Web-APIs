@@ -69,6 +69,9 @@ namespace ASP.NetCore3_Web_APIs
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=index}/{id?}");
             });
         }
     }
