@@ -24,7 +24,6 @@
     ".NETCoreApp,Version=v3.0": {
       "ASP.NetCore3-Web-APIs/1.0.0": {
         "dependencies": {
-          "Entities": "1.0.0",
           "LoggerService": "1.0.0",
           "Microsoft.EntityFrameworkCore.Design": "3.1.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.5",
@@ -2184,6 +2183,9 @@
         }
       },
       "Contracts/1.0.0": {
+        "dependencies": {
+          "Entities": "1.0.0"
+        },
         "runtime": {
           "Contracts.dll": {}
         },

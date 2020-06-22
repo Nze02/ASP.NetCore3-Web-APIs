@@ -6,3 +6,6 @@ C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Contracts\obj\Debug\
 C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Contracts\obj\Debug\netcoreapp3.0\Contracts.AssemblyInfo.cs
 C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Contracts\obj\Debug\netcoreapp3.0\Contracts.dll
 C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Contracts\obj\Debug\netcoreapp3.0\Contracts.pdb
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Contracts\bin\Debug\netcoreapp3.0\Entities.dll
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Contracts\bin\Debug\netcoreapp3.0\Entities.pdb
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Contracts\obj\Debug\netcoreapp3.0\Contracts.csproj.CopyComplete
