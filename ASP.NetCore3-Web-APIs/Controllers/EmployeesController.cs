@@ -47,5 +47,38 @@ namespace ASP.NetCore3_Web_APIs.Controllers
 
             return Ok(employeesFromDb); 
         }
+
+
+        [HttpGet("{id}")]
+        public IActionResult GetEmployeeForCompany(Guid companyId, Guid id)
+        {
+            var company = _repository.Company.GetCompany(companyId, trackChanges: false);
+            if (company == null)
+            {
+                _logger.LogInfo($"Company with id: {companyId} doesn't exist in the database.");
+                
+                return NotFound();
+            }
+            
+            var employeeDb = _repository.Employee.GetEmployee(companyId, id, trackChanges: false);
+            if (employeeDb == null)
+            {
+                _logger.LogInfo($"Employee with id: {id} doesn't exist in the database.");
+                
+                return NotFound();
+            }
+
+            //var employee = _mapper.Map<EmployeeDto>(employeeDb);
+            var employee = new EmployeeDto
+            {
+                Id = employeeDb.Id,
+                Name = employeeDb.Name,
+                Age = employeeDb.Age,
+                Position = employeeDb.Position
+            };
+
+
+            return Ok(employee);
+        }
     }
 }
