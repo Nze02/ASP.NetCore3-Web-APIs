@@ -28,26 +28,19 @@ namespace ASP.NetCore3_Web_APIs.Controllers
         [HttpGet]
         public IActionResult GetCompanies()
         {
-            try
-            {
-                var companies = _repository.Company.GetAllCompanies(trackChanges: false);
+            var companies = _repository.Company.GetAllCompanies(trackChanges: false);
 
-                //var companiesDto = _mapper.Map<IEnumerable<CompanyDto>>(companies);
-                var companiesDto = companies.Select(c => new CompanyDto
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                    FullAddress = string.Join(' ', c.Address, c.Country)
-                }).ToList();
-
-                return Ok(companiesDto);
-            }
-            catch (Exception ex)
+            //var companiesDto = _mapper.Map<IEnumerable<CompanyDto>>(companies);
+            var companiesDto = companies.Select(c => new CompanyDto
             {
-                _logger.LogError($"Something went wrong in the {nameof(GetCompanies)} action {ex}");
-                
-                return StatusCode(500, "Internal server error");
-            }
+                Id = c.Id,
+                Name = c.Name,
+                FullAddress = string.Join(' ', c.Address, c.Country)
+            }).ToList();
+            
+            throw new Exception("****************Exception*********************************");
+
+            //return Ok(companiesDto); 
         }
     }
 }
