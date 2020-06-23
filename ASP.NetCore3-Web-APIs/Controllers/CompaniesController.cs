@@ -37,10 +37,32 @@ namespace ASP.NetCore3_Web_APIs.Controllers
                 Name = c.Name,
                 FullAddress = string.Join(' ', c.Address, c.Country)
             }).ToList();
-            
-            throw new Exception("****************Exception*********************************");
 
-            //return Ok(companiesDto); 
+            //throw new Exception("Exception");
+
+            return Ok(companiesDto); 
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetCompany(Guid id) 
+        {
+            var company = _repository.Company.GetCompany(id, trackChanges: false);
+            if (company == null)
+            {
+                _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+            else 
+            {
+                var companiesDto =  new CompanyDto
+                {
+                    Id = company.Id,
+                    Name = company.Name,
+                    FullAddress = string.Join(' ', company.Address, company.Country)
+                };
+
+                return Ok(companiesDto);
+            }
         }
     }
 }
