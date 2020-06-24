@@ -11,7 +11,11 @@ namespace Entities.DataTransferObjects
                 .ForMember(c => c.FullAddress,
                 opt => opt.MapFrom(x => string.Join(' ', x.Address, x.Country)));
 
+            //mapping rule for the Employee and EmployeeDto objects
             CreateMap<Employee, EmployeeDto>();
+
+            //mapping rule for the Company and CompanyForCreationDto objects
+            CreateMap<CompanyForCreationDto, Company>();
         }
     }
 }

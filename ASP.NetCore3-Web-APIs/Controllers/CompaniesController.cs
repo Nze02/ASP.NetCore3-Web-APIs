@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Contracts;
 using Entities.DataTransferObjects;
 using AutoMapper;
+using Entities.Models;
 
 namespace ASP.NetCore3_Web_APIs.Controllers
 {
@@ -40,22 +41,22 @@ namespace ASP.NetCore3_Web_APIs.Controllers
 
             //throw new Exception("Exception");
 
-            return Ok(companiesDto); 
+            return Ok(companiesDto);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetCompany(Guid id) 
+        [HttpGet("{id}", Name = "CompanyById")]
+        public IActionResult GetCompany(Guid id)
         {
             var company = _repository.Company.GetCompany(id, trackChanges: false);
             if (company == null)
             {
                 _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
-                
+
                 return NotFound();
             }
-            else 
+            else
             {
-                var companiesDto =  new CompanyDto
+                var companiesDto = new CompanyDto
                 {
                     Id = company.Id,
                     Name = company.Name,
@@ -64,6 +65,37 @@ namespace ASP.NetCore3_Web_APIs.Controllers
 
                 return Ok(companiesDto);
             }
+        }
+
+        [HttpPost]
+        public IActionResult CreateCompany([FromBody]CompanyForCreationDto company)
+        {
+            if (company == null)
+            {
+                _logger.LogError("CompanyForCreationDto object sent from client is null.");
+                return BadRequest("CompanyForCreationDto object is null");
+            }
+            //var companyEntity = _mapper.Map<Company>(company);
+            var companyEntity = new Company
+            {
+                Name = company.Name,
+                Address = company.Address,
+                Country = company.Country
+            };
+
+
+            _repository.Company.CreateCompany(companyEntity);
+            _repository.Save();
+
+            //var companyToReturn = _mapper.Map<CompanyDto>(companyEntity);
+            var companyToReturn = new CompanyDto
+            {
+                Id = companyEntity.Id,
+                Name = companyEntity.Name,
+                FullAddress = string.Join(' ', companyEntity.Address, companyEntity.Country)
+            };
+
+            return CreatedAtRoute("CompanyById", new { id = companyToReturn.Id }, companyToReturn);
         }
     }
 }
