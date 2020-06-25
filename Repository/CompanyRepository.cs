@@ -1,5 +1,6 @@
 ﻿using Contracts;
 using Entities;
+using Entities.DataTransferObjects;
 using Entities.Models;
 using System;
 using System.Collections.Generic;
@@ -25,5 +26,17 @@ namespace Repository
             .SingleOrDefault();
 
         public void CreateCompany(Company company) => Create(company);
+
+        //get child Employee resources added alongside Company
+        public List<Employee> GetEmployees(IEnumerable<EmployeeForCreationDto> Employees)
+        {
+            List<Employee> employees = new List<Employee>();
+            foreach (EmployeeForCreationDto comp in Employees)
+            {
+                employees.Add(new Employee {Name = comp.Name, Age = comp.Age, Position = comp.Position });
+            }
+
+            return employees;
+        }
     }
 }

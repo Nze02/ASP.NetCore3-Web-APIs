@@ -85,12 +85,14 @@ namespace ASP.NetCore3_Web_APIs.Controllers
         [HttpPost]
         public IActionResult CreateEmployeeForCompany(Guid companyId, [FromBody]EmployeeForCreationDto employee)
         {
+            //Check if request contains NULL values
             if(employee == null)
             {
                 _logger.LogError("EmployeeForCreationDto object sent from client is null.");
                 return BadRequest("EmployeeForCreationDto object is null");
             }
 
+            //Check to see that company with such Guid exists
             var company = _repository.Company.GetCompany(companyId, trackChanges: false);
             if (company == null)
             {

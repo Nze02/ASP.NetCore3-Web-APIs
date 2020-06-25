@@ -75,12 +75,23 @@ namespace ASP.NetCore3_Web_APIs.Controllers
                 _logger.LogError("CompanyForCreationDto object sent from client is null.");
                 return BadRequest("CompanyForCreationDto object is null");
             }
+
+
+            //Get child Employees resource if they exist
+            List<Employee> employees = null;
+            if(company.Employees != null)
+            {
+                employees = _repository.Company.GetEmployees(company.Employees);
+            }
+
             //var companyEntity = _mapper.Map<Company>(company);
             var companyEntity = new Company
             {
                 Name = company.Name,
                 Address = company.Address,
-                Country = company.Country
+                Country = company.Country,
+                Employees = employees
+                
             };
 
 

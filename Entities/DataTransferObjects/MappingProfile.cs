@@ -18,7 +18,7 @@ namespace Entities.DataTransferObjects
             CreateMap<CompanyForCreationDto, Company>();
 
             //mapping rule for the Employee and EmployeeForCreationDto objects
-            CreateMap<EmployeeForCreationDto, Employee>();
+            CreateMap<EmployeeForCreationDto, Employee>(); //.ReverseMap()
         }
     }
 }
