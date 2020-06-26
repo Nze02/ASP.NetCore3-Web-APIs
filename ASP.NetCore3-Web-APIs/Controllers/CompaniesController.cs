@@ -219,5 +219,44 @@ namespace ASP.NetCore3_Web_APIs.Controllers
 
             return NoContent();
         }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateCompany(Guid id, [FromBody]CompanyForUpdateDto company)
+        {
+            if (company == null)
+            {
+                _logger.LogError("CompanyForUpdateDto object sent from client is null.");
+                return BadRequest("CompanyForUpdateDto object is null");
+            }
+
+            var companyEntity = _repository.Company.GetCompany(id, trackChanges: true);
+            if (companyEntity == null)
+            {
+                _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+
+            //extracting the added employee(s)
+            List<EmployeeForCreationDto> employeeForCreationDtoList = company.Employees.ToList();
+            List<Employee> employees = new List<Employee>();
+            foreach(EmployeeForCreationDto employeeForCreationDto in employeeForCreationDtoList)
+            {
+                employees.Add(new Employee {
+                    Name = employeeForCreationDto.Name,
+                    Age = employeeForCreationDto.Age,
+                    Position = employeeForCreationDto.Position
+                });
+            }
+
+            //_mapper.Map(company, companyEntity);
+            companyEntity.Name = company.Name;
+            companyEntity.Address = company.Address;
+            companyEntity.Country = company.Country;
+            companyEntity.Employees = (ICollection<Employee>)employees;
+
+            _repository.Save();
+
+            return NoContent();
+        }
     }
 }
