@@ -16,5 +16,7 @@ namespace Contracts
 
         //get child Employee resources added alongside Company
         List<Employee> GetEmployees(IEnumerable<EmployeeForCreationDto> Employees);
+
+        IEnumerable<Company> GetByIds(IEnumerable<Guid> ids, bool trackChanges);
     }
 }

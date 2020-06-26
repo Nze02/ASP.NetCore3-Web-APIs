@@ -8,6 +8,7 @@ using Contracts;
 using Entities.DataTransferObjects;
 using AutoMapper;
 using Entities.Models;
+using ASP.NetCore3_Web_APIs.ModelBinders;
 
 namespace ASP.NetCore3_Web_APIs.Controllers
 {
@@ -26,6 +27,8 @@ namespace ASP.NetCore3_Web_APIs.Controllers
             _mapper = mapper;
         }
 
+
+        //getting all companies
         [HttpGet]
         public IActionResult GetCompanies()
         {
@@ -44,6 +47,8 @@ namespace ASP.NetCore3_Web_APIs.Controllers
             return Ok(companiesDto);
         }
 
+
+        //getting company by id
         [HttpGet("{id}", Name = "CompanyById")]
         public IActionResult GetCompany(Guid id)
         {
@@ -67,6 +72,8 @@ namespace ASP.NetCore3_Web_APIs.Controllers
             }
         }
 
+
+        //creating new company
         [HttpPost]
         public IActionResult CreateCompany([FromBody]CompanyForCreationDto company)
         {
@@ -79,7 +86,7 @@ namespace ASP.NetCore3_Web_APIs.Controllers
 
             //Get child Employees resource if they exist
             List<Employee> employees = null;
-            if(company.Employees != null)
+            if (company.Employees != null)
             {
                 employees = _repository.Company.GetEmployees(company.Employees);
             }
@@ -91,7 +98,6 @@ namespace ASP.NetCore3_Web_APIs.Controllers
                 Address = company.Address,
                 Country = company.Country,
                 Employees = employees
-                
             };
 
 
@@ -107,6 +113,94 @@ namespace ASP.NetCore3_Web_APIs.Controllers
             };
 
             return CreatedAtRoute("CompanyById", new { id = companyToReturn.Id }, companyToReturn);
+        }
+
+
+        //get companies with ID contained in list of ids
+        [HttpGet("collection/({ids})", Name = "CompanyCollection")]
+        public IActionResult GetCompanyCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))]IEnumerable<Guid> ids)
+        {
+            if (ids == null)
+            {
+                _logger.LogError("Parameter ids is null");
+                return BadRequest("Parameter ids is null");
+            }
+
+            var companyEntities = _repository.Company.GetByIds(ids, trackChanges: false);
+            if (ids.Count() != companyEntities.Count())
+            {
+                _logger.LogError("Some ids are not valid in a collection");
+                return NotFound();
+            }
+
+            //var companiesToReturn = _mapper.Map<IEnumerable<CompanyDto>>(companyEntities);
+            List<Company> companyList = companyEntities.ToList();
+            List<CompanyDto> companiesToReturn = new List<CompanyDto>();
+
+            foreach (Company company in companyList)
+            {
+                companiesToReturn.Add(new CompanyDto {Id = company.Id, Name =  company.Name, FullAddress = string.Join(' ', company.Address, company.Country) });
+            }
+
+            return Ok(companiesToReturn);
+        }
+
+
+        //create more than one company at a time
+        [HttpPost("collection")]
+        public IActionResult CreateCompanyCollection([FromBody]IEnumerable<CompanyForCreationDto> companyCollection)
+        {
+            if (companyCollection == null)
+            {
+                _logger.LogError("Company collection sent from client is null.");
+                return BadRequest("Company collection is null");
+            }
+            
+
+            //var companyEntities = _mapper.Map<IEnumerable<Company>>(companyCollection);
+            List<CompanyForCreationDto> companyForCreationDtoList = companyCollection.ToList();
+            List<Company> companyEntities = new List<Company>();
+            foreach (CompanyForCreationDto companyForCreationDto in companyForCreationDtoList)
+            {
+                List<Employee> employees = null;
+                if (companyForCreationDto.Employees != null)
+                {
+                    employees = _repository.Company.GetEmployees(companyForCreationDto.Employees);
+                }
+
+                companyEntities.Add(new Company
+                {
+                    Name = companyForCreationDto.Name,
+                    Address = companyForCreationDto.Address,
+                    Country = companyForCreationDto.Country,
+                    Employees = employees
+                });
+            }
+
+            foreach (Company company in companyEntities)
+            {
+                _repository.Company.CreateCompany(company);
+            }
+            
+            _repository.Save();
+
+
+            //var companyCollectionToReturn = _mapper.Map<IEnumerable<CompanyDto>>(companyEntities);
+            List<Company> companyEntitiesList = companyEntities.ToList();
+            List<CompanyDto> companyCollectionToReturn = new List<CompanyDto>();
+            foreach(Company company in companyEntitiesList)
+            {
+                companyCollectionToReturn.Add(new CompanyDto
+                {
+                    Id = company.Id,
+                    Name = company.Name,
+                    FullAddress = string.Join(' ', company.Address, company.Country)
+                });
+            }
+
+            var ids = string.Join(",", companyCollectionToReturn.Select(c => c.Id));
+            
+            return CreatedAtRoute("CompanyCollection", new { ids }, companyCollectionToReturn);
         }
     }
 }

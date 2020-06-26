@@ -38,5 +38,9 @@ namespace Repository
 
             return employees;
         }
+
+        public IEnumerable<Company> GetByIds(IEnumerable<Guid> ids, bool trackChanges) =>
+            FindByCondition(x => ids.Contains(x.Id), trackChanges)
+            .ToList();
     }
 }
