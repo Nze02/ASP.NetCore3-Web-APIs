@@ -18,5 +18,7 @@ namespace Contracts
         List<Employee> GetEmployees(IEnumerable<EmployeeForCreationDto> Employees);
 
         IEnumerable<Company> GetByIds(IEnumerable<Guid> ids, bool trackChanges);
+
+        void DeleteCompany(Company company);
     }
 }
