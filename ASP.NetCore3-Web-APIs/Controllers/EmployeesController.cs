@@ -230,12 +230,20 @@ namespace ASP.NetCore3_Web_APIs.Controllers
                 Position = employeeEntity.Position
             };
 
-            patchDoc.ApplyTo(employeeToPatch);
+            patchDoc.ApplyTo(employeeToPatch, ModelState);  //validating patchDoc (checks to see that paths are correct/exists)
+            TryValidateModel(employeeToPatch);  //validates the values to make sure model is valid
+            
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the patch document");
+                return UnprocessableEntity(ModelState);
+            }
+
+            //saving employeeEntity to db
             //_mapper.Map(employeeToPatch, employeeEntity);
             employeeEntity.Name = employeeToPatch.Name;
             employeeEntity.Age = employeeToPatch.Age;
             employeeEntity.Position = employeeToPatch.Position;
-
             _repository.Save();
             
             return NoContent();
