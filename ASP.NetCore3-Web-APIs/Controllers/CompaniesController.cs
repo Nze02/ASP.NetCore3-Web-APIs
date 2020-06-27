@@ -236,6 +236,12 @@ namespace ASP.NetCore3_Web_APIs.Controllers
                 return BadRequest("CompanyForUpdateDto object is null");
             }
 
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the EmployeeForUpdateDto object");
+                return UnprocessableEntity(ModelState);
+            }
+
 
             var companyEntity = _repository.Company.GetCompany(id, trackChanges: true);
             if (companyEntity == null)

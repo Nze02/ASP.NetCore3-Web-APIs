@@ -97,9 +97,12 @@ namespace ASP.NetCore3_Web_APIs.Controllers
             if (!ModelState.IsValid)
             {
                 _logger.LogError("Invalid model state for the EmployeeForCreationDto object");
+                //ModelState.AddModelError(string key, string errorMessage);
+                
                 return UnprocessableEntity(ModelState);
             }
 
+            
 
             //Check to see that company with such Guid exists
             var company = _repository.Company.GetCompany(companyId, trackChanges: false);
@@ -157,12 +160,18 @@ namespace ASP.NetCore3_Web_APIs.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateEmployee(Guid companyId, Guid id, [FromBody] EmployeeForUpdateDto employee)
+        public IActionResult UpdateEmployeeForCompany(Guid companyId, Guid id, [FromBody] EmployeeForUpdateDto employee)
         {
             if (employee == null)
             {
                 _logger.LogError("EmployeeForUpdateDto object sent from client is null.");
                 return BadRequest("EmployeeForUpdateDto object is null");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the EmployeeForUpdateDto object");
+                return UnprocessableEntity(ModelState);
             }
 
             var company = _repository.Company.GetCompany(companyId, trackChanges: false);
