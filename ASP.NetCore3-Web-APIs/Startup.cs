@@ -36,7 +36,8 @@ namespace ASP.NetCore3_Web_APIs
             {
                 config.RespectBrowserAcceptHeader = true;
                 config.ReturnHttpNotAcceptable = true;
-            }).AddXmlDataContractSerializerFormatters()
+            }).AddNewtonsoftJson()
+            .AddXmlDataContractSerializerFormatters()
             .AddCustomCSVFormatter();
         }
 
