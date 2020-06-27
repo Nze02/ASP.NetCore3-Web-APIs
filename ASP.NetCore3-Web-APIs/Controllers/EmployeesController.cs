@@ -93,6 +93,14 @@ namespace ASP.NetCore3_Web_APIs.Controllers
                 return BadRequest("EmployeeForCreationDto object is null");
             }
 
+            //Suppress the BadRequest error when the ModelState is invalid
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the EmployeeForCreationDto object");
+                return UnprocessableEntity(ModelState);
+            }
+
+
             //Check to see that company with such Guid exists
             var company = _repository.Company.GetCompany(companyId, trackChanges: false);
             if (company == null)

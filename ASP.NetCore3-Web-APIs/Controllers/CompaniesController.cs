@@ -83,6 +83,13 @@ namespace ASP.NetCore3_Web_APIs.Controllers
                 return BadRequest("CompanyForCreationDto object is null");
             }
 
+            //Suppress the BadRequest error when the ModelState is invalid
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the CompanyForCreationDto object");
+                return UnprocessableEntity(ModelState);
+            }
+
 
             //Get child Employees resource if they exist
             List<Employee> employees = null;
@@ -228,6 +235,7 @@ namespace ASP.NetCore3_Web_APIs.Controllers
                 _logger.LogError("CompanyForUpdateDto object sent from client is null.");
                 return BadRequest("CompanyForUpdateDto object is null");
             }
+
 
             var companyEntity = _repository.Company.GetCompany(id, trackChanges: true);
             if (companyEntity == null)
