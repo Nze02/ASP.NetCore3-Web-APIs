@@ -1,4 +1,5 @@
 using System.IO;
+using ASP.NetCore3_Web_APIs.ActionFilters;
 using ASP.NetCore3_Web_APIs.Extensions;
 using AutoMapper;
 using Contracts;
@@ -32,17 +33,21 @@ namespace ASP.NetCore3_Web_APIs
             services.ConfigureSqlContext(Configuration);
             services.ConfigureRepositoryManager();
             services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<ValidationFilterAttribute>();
+            //services.AddScoped<ControllerFilterExample>();
 
             services.AddControllers(config =>
             {
-                config.RespectBrowserAcceptHeader = true;
-                config.ReturnHttpNotAcceptable = true;
+                config.RespectBrowserAcceptHeader = true;   //telling the server to respect the Accept header
+                config.ReturnHttpNotAcceptable = true;  //tells the server to return the 406 Not Acceptable status code if the client tries to negotiate for media type it doesn't suuport
+                //config.Filters.Add(new GlobalFilterExample());
             }).AddNewtonsoftJson()
-            .AddXmlDataContractSerializerFormatters()
+            .AddXmlDataContractSerializerFormatters()   //tell the server to support XML formatters.
             .AddCustomCSVFormatter();
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
+                //supress the BadRequest error when ModelState is invalid
                 options.SuppressModelStateInvalidFilter = true;
             });
         }

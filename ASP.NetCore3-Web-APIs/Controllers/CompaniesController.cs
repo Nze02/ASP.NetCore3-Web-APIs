@@ -9,6 +9,7 @@ using Entities.DataTransferObjects;
 using AutoMapper;
 using Entities.Models;
 using ASP.NetCore3_Web_APIs.ModelBinders;
+using ASP.NetCore3_Web_APIs.ActionFilters;
 
 namespace ASP.NetCore3_Web_APIs.Controllers
 {
@@ -75,20 +76,23 @@ namespace ASP.NetCore3_Web_APIs.Controllers
 
         //creating new company
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCompany([FromBody]CompanyForCreationDto company)
         {
-            if (company == null)
-            {
-                _logger.LogError("CompanyForCreationDto object sent from client is null.");
-                return BadRequest("CompanyForCreationDto object is null");
-            }
+            //------------- The commented code below is replaced by the ActionFilter called as an attribute above ----------
 
-            //Suppress the BadRequest error when the ModelState is invalid
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError("Invalid model state for the CompanyForCreationDto object");
-                return UnprocessableEntity(ModelState);
-            }
+            //if (company == null)
+            //{
+            //    _logger.LogError("CompanyForCreationDto object sent from client is null.");
+            //    return BadRequest("CompanyForCreationDto object is null");
+            //}
+
+            ////Suppress the BadRequest error when the ModelState is invalid
+            //if (!ModelState.IsValid)
+            //{
+            //    _logger.LogError("Invalid model state for the CompanyForCreationDto object");
+            //    return UnprocessableEntity(ModelState);
+            //}
 
 
             //Get child Employees resource if they exist
@@ -214,7 +218,7 @@ namespace ASP.NetCore3_Web_APIs.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCompany(Guid id)
         {
-            var company = _repository.Company.GetCompanyAsync(id, trackChanges: false);
+            var company = await _repository.Company.GetCompanyAsync(id, trackChanges: false);
             if(company == null)
             {
                 _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
@@ -228,19 +232,22 @@ namespace ASP.NetCore3_Web_APIs.Controllers
         }
 
         [HttpPut("{id}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateCompany(Guid id, [FromBody]CompanyForUpdateDto company)
         {
-            if (company == null)
-            {
-                _logger.LogError("CompanyForUpdateDto object sent from client is null.");
-                return BadRequest("CompanyForUpdateDto object is null");
-            }
+            //------------- The commented code below is replaced by the ActionFilter called as an attribute above ----------
 
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError("Invalid model state for the EmployeeForUpdateDto object");
-                return UnprocessableEntity(ModelState);
-            }
+            //if (company == null)
+            //{
+            //    _logger.LogError("CompanyForUpdateDto object sent from client is null.");
+            //    return BadRequest("CompanyForUpdateDto object is null");
+            //}
+
+            //if (!ModelState.IsValid)
+            //{
+            //    _logger.LogError("Invalid model state for the EmployeeForUpdateDto object");
+            //    return UnprocessableEntity(ModelState);
+            //}
 
 
             var companyEntity = await _repository.Company.GetCompanyAsync(id, trackChanges: true);
