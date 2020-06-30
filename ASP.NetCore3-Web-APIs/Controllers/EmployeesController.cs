@@ -141,7 +141,7 @@ namespace ASP.NetCore3_Web_APIs.Controllers
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public async Task<IActionResult> DeleteEmployeeForCompany(Guid companyId, Guid id)
         {
-            var employeeForCompany = HttpContext.Items.["employee"] as Employee;
+            var employeeForCompany = HttpContext.Items["employee"] as Employee;
             //------------- The commented code below is replaced by the ActionFilter called as an attribute above ----------
 
             //var company = await _repository.Company.GetCompanyAsync(companyId, trackChanges: false);
@@ -185,7 +185,7 @@ namespace ASP.NetCore3_Web_APIs.Controllers
             //    return UnprocessableEntity(ModelState);
             //}
 
-            var employeeEntity = HttpContext.Items.["employee"] as Employee;
+            var employeeEntity = HttpContext.Items["employee"] as Employee;
             //------------- The commented code below is replaced by the ActionFilter called as an attribute above ----------
 
             //var company = await _repository.Company.GetCompanyAsync(companyId, trackChanges: false);
