@@ -216,14 +216,20 @@ namespace ASP.NetCore3_Web_APIs.Controllers
 
 
         [HttpDelete("{id}")]
+        [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
+        [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
         public async Task<IActionResult> DeleteCompany(Guid id)
         {
-            var company = await _repository.Company.GetCompanyAsync(id, trackChanges: false);
-            if(company == null)
-            {
-                _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
-                return NotFound();
-            }
+            var company = HttpContext.Items["company"] as Company;
+
+            //------------- The commented code below is replaced by the IAsyncActionFilter called as an attribute above ----------
+
+            //var company = await _repository.Company.GetCompanyAsync(id, trackChanges: false);
+            //if(company == null)
+            //{
+            //    _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
+            //    return NotFound();
+            //}
 
             _repository.Company.DeleteCompany(company);
             await _repository.SaveAsync();
@@ -233,6 +239,7 @@ namespace ASP.NetCore3_Web_APIs.Controllers
 
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
         public async Task<IActionResult> UpdateCompany(Guid id, [FromBody]CompanyForUpdateDto company)
         {
             //------------- The commented code below is replaced by the ActionFilter called as an attribute above ----------
@@ -250,12 +257,15 @@ namespace ASP.NetCore3_Web_APIs.Controllers
             //}
 
 
-            var companyEntity = await _repository.Company.GetCompanyAsync(id, trackChanges: true);
-            if (companyEntity == null)
-            {
-                _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
-                return NotFound();
-            }
+            var companyEntity = HttpContext.Items["company"] as Company;
+            //------------- The commented code below is replaced by the IAsyncActionFilter called as an attribute above ----------
+
+            //var companyEntity = await _repository.Company.GetCompanyAsync(id, trackChanges: true);
+            //if (companyEntity == null)
+            //{
+            //    _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
+            //    return NotFound();
+            //}
 
             //extracting the added employee(s)
             List<EmployeeForCreationDto> employeeForCreationDtoList = company.Employees.ToList();

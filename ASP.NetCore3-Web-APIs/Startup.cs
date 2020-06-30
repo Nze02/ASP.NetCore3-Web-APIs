@@ -34,6 +34,7 @@ namespace ASP.NetCore3_Web_APIs
             services.ConfigureRepositoryManager();
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<ValidationFilterAttribute>();
+            services.AddScoped<ValidateEmployeeForCompanyExistsAttribute>();
             //services.AddScoped<ControllerFilterExample>();
 
             services.AddControllers(config =>

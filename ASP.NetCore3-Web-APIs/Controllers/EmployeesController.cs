@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ASP.NetCore3_Web_APIs.ActionFilters;
+﻿using ASP.NetCore3_Web_APIs.ActionFilters;
 using AutoMapper;
 using Contracts;
 using Entities.DataTransferObjects;
@@ -10,6 +6,9 @@ using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ASP.NetCore3_Web_APIs.Controllers
 {
@@ -139,23 +138,27 @@ namespace ASP.NetCore3_Web_APIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEmployee(Guid companyId, Guid id)
+        [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
+        public async Task<IActionResult> DeleteEmployeeForCompany(Guid companyId, Guid id)
         {
-            var company = await _repository.Company.GetCompanyAsync(companyId, trackChanges: false);
-            if (company == null)
-            {
-                _logger.LogInfo($"Company with id: {companyId} doesn't exist in the database.");
+            var employeeForCompany = HttpContext.Items.["employee"] as Employee;
+            //------------- The commented code below is replaced by the ActionFilter called as an attribute above ----------
 
-                return NotFound();
-            }
+            //var company = await _repository.Company.GetCompanyAsync(companyId, trackChanges: false);
+            //if (company == null)
+            //{
+            //    _logger.LogInfo($"Company with id: {companyId} doesn't exist in the database.");
 
-            var employeeForCompany = await _repository.Employee.GetEmployeeAsync(companyId, id, trackChanges: false);
-            if (employeeForCompany == null)
-            {
-                _logger.LogInfo($"Employee with id: {id} doesn't exist in the database.");
+            //    return NotFound();
+            //}
 
-                return NotFound();
-            }
+            //var employeeForCompany = await _repository.Employee.GetEmployeeAsync(companyId, id, trackChanges: false);
+            //if (employeeForCompany == null)
+            //{
+            //    _logger.LogInfo($"Employee with id: {id} doesn't exist in the database.");
+
+            //    return NotFound();
+            //}
 
             _repository.Employee.DeleteEmployee(employeeForCompany);
             await _repository.SaveAsync();
@@ -165,6 +168,7 @@ namespace ASP.NetCore3_Web_APIs.Controllers
 
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public async Task<IActionResult> UpdateEmployeeForCompany(Guid companyId, Guid id, [FromBody] EmployeeForUpdateDto employee)
         {
             //------------- The commented code below is replaced by the ActionFilter called as an attribute above ----------
@@ -181,21 +185,24 @@ namespace ASP.NetCore3_Web_APIs.Controllers
             //    return UnprocessableEntity(ModelState);
             //}
 
-            var company = await _repository.Company.GetCompanyAsync(companyId, trackChanges: false);
-            if (company == null)
-            {
-                _logger.LogInfo($"Company with id: {companyId} doesn't exist in the database.");
+            var employeeEntity = HttpContext.Items.["employee"] as Employee;
+            //------------- The commented code below is replaced by the ActionFilter called as an attribute above ----------
 
-                return NotFound();
-            }
+            //var company = await _repository.Company.GetCompanyAsync(companyId, trackChanges: false);
+            //if (company == null)
+            //{
+            //    _logger.LogInfo($"Company with id: {companyId} doesn't exist in the database.");
 
-            var employeeEntity = await _repository.Employee.GetEmployeeAsync(companyId, id, trackChanges: true);
-            if (employeeEntity == null)
-            {
-                _logger.LogInfo($"Employee with id: {id} doesn't exist in the database.");
+            //    return NotFound();
+            //}
 
-                return NotFound();
-            }
+            //var employeeEntity = await _repository.Employee.GetEmployeeAsync(companyId, id, trackChanges: true);
+            //if (employeeEntity == null)
+            //{
+            //    _logger.LogInfo($"Employee with id: {id} doesn't exist in the database.");
+
+            //    return NotFound();
+            //}
 
             //_mapper.Map(employee, employeeEntity);
             employeeEntity.Name = employee.Name;
@@ -207,6 +214,7 @@ namespace ASP.NetCore3_Web_APIs.Controllers
         }
 
         [HttpPatch("{id}")]
+        [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public async Task<IActionResult> PartiallyUpdateEmployeeForCompany(Guid companyId, Guid id, [FromBody] JsonPatchDocument<EmployeeForUpdateDto> patchDoc)
         {
             if (patchDoc == null)
