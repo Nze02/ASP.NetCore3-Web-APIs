@@ -7,6 +7,7 @@ using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,6 +40,9 @@ namespace ASP.NetCore3_Web_APIs.Controllers
             }
             
             var employeesFromDb = await _repository.Employee.GetEmployeesAsync(companyId, employeeParameters, trackChanges: false);
+
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(employeesFromDb.MetaData));
+            
             //var employeeDto = _mapper.Map<IEnumerable<EmployeeDto>>(employeesFromDb);
             var employeeDto = employeesFromDb.Select(e => new EmployeeDto
             {
