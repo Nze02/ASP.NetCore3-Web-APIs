@@ -3,6 +3,7 @@ using ASP.NetCore3_Web_APIs.ActionFilters;
 using ASP.NetCore3_Web_APIs.Extensions;
 using AutoMapper;
 using Contracts;
+using Entities.DataTransferObjects;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NLog;
+using Repository.DataShaping;
 
 namespace ASP.NetCore3_Web_APIs
 {
@@ -36,6 +38,7 @@ namespace ASP.NetCore3_Web_APIs
             services.AddScoped<ValidationFilterAttribute>();
             services.AddScoped<ValidateEmployeeForCompanyExistsAttribute>();
             //services.AddScoped<ControllerFilterExample>();
+            services.AddScoped<IDataShaper<EmployeeDto>, DataShaper<EmployeeDto>>();    //register DataShaper
 
             services.AddControllers(config =>
             {

@@ -21,12 +21,14 @@ namespace ASP.NetCore3_Web_APIs.Controllers
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
+        private readonly IDataShaper<EmployeeDto> _dataShaper;
 
-        public EmployeesController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
+        public EmployeesController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, IDataShaper<EmployeeDto> dataShaper)
         {
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
+            _dataShaper = dataShaper;
         }
 
         [HttpGet]
@@ -47,7 +49,7 @@ namespace ASP.NetCore3_Web_APIs.Controllers
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(employeesFromDb.MetaData));
             
             //var employeeDto = _mapper.Map<IEnumerable<EmployeeDto>>(employeesFromDb);
-            var employeeDto = employeesFromDb.Select(e => new EmployeeDto
+            var employeesDto = employeesFromDb.Select(e => new EmployeeDto
             {
                 Id = e.Id,
                 Name = e.Name,
@@ -55,7 +57,8 @@ namespace ASP.NetCore3_Web_APIs.Controllers
                 Position = e.Position
             }).ToList();
 
-            return Ok(employeeDto); 
+            //return Ok(employeesDto); 
+            return Ok(_dataShaper.ShapeData(employeesDto, employeeParameters.Fields));
         }
 
 
