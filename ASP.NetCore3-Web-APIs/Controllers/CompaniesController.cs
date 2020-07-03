@@ -289,5 +289,12 @@ namespace ASP.NetCore3_Web_APIs.Controllers
 
             return NoContent();
         }
+
+        [HttpOptions]
+        public IActionResult GetCompaniesOptions()
+        {
+            Response.Headers.Add("Allow", "GET, OPTIONS, POST");
+            return Ok();
+        }
     }
 }
