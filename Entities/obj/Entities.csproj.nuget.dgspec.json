@@ -46,9 +46,9 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
-            "FluentNHibernate": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[2.1.2, )"
+              "version": "[3.1.5, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",

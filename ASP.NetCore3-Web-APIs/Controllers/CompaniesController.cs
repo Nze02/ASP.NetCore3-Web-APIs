@@ -13,6 +13,7 @@ using ASP.NetCore3_Web_APIs.ActionFilters;
 
 namespace ASP.NetCore3_Web_APIs.Controllers
 {
+    //[ApiVersion("1.0")]
     [Route("api/companies")]
     [ApiController]
     public class CompaniesController : ControllerBase

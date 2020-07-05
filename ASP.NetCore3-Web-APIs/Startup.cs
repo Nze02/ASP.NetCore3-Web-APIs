@@ -39,6 +39,7 @@ namespace ASP.NetCore3_Web_APIs
             services.AddScoped<ValidateEmployeeForCompanyExistsAttribute>();
             //services.AddScoped<ControllerFilterExample>();
             services.AddScoped<IDataShaper<EmployeeDto>, DataShaper<EmployeeDto>>();    //register DataShaper
+            services.ConfigureVersioning();
 
             services.AddControllers(config =>
             {

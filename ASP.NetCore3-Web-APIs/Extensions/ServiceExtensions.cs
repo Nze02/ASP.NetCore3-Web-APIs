@@ -1,7 +1,10 @@
-﻿using Contracts;
+﻿using ASP.NetCore3_Web_APIs.Controllers;
+using Contracts;
 using Entities;
 using LoggerService;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,5 +48,18 @@ namespace ASP.NetCore3_Web_APIs.Extensions
             builder.AddMvcOptions(config =>
             config.OutputFormatters
             .Add(new CsvOutputFormatter()));
+
+        public static void ConfigureVersioning(this IServiceCollection services)
+        {
+            services.AddApiVersioning(opt =>
+            {
+                opt.ReportApiVersions = true;   //adds the API version to the response header
+                opt.AssumeDefaultVersionWhenUnspecified = true; //specifies the default API version if the client doesn’t send one
+                opt.DefaultApiVersion = new ApiVersion(1, 0); //sets the default version count
+                opt.ApiVersionReader = new HeaderApiVersionReader("api-version");   //send the api version in the HTTP Header
+                opt.Conventions.Controller<CompaniesController>().HasApiVersion(new ApiVersion(1, 0));
+                opt.Conventions.Controller<CompaniesV2Controller>().HasDeprecatedApiVersion(new ApiVersion(2, 0));
+            });
+        }
     }
 }
