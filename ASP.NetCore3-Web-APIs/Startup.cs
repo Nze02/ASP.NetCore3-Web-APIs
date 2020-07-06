@@ -1,6 +1,7 @@
 using System.IO;
 using ASP.NetCore3_Web_APIs.ActionFilters;
 using ASP.NetCore3_Web_APIs.Extensions;
+using AspNetCoreRateLimit;
 using AutoMapper;
 using Contracts;
 using Entities.DataTransferObjects;
@@ -42,6 +43,10 @@ namespace ASP.NetCore3_Web_APIs
             services.ConfigureVersioning();
             services.ConfigureResponseCaching();
             services.ConfigureHttpCacheHeaders();
+            services.AddMemoryCache();  //Rate Limiting uses a memory cache to store its counters and rules
+            
+            services.ConfigureRateLimitingOptions();
+            services.AddHttpContextAccessor();
 
             services.AddControllers(config =>
             {
@@ -88,6 +93,8 @@ namespace ASP.NetCore3_Web_APIs
             app.UseResponseCaching();
 
             app.UseHttpCacheHeaders();
+
+            app.UseIpRateLimiting();
 
             app.UseRouting();
 
