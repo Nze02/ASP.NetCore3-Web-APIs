@@ -40,12 +40,15 @@ namespace ASP.NetCore3_Web_APIs
             //services.AddScoped<ControllerFilterExample>();
             services.AddScoped<IDataShaper<EmployeeDto>, DataShaper<EmployeeDto>>();    //register DataShaper
             services.ConfigureVersioning();
+            services.ConfigureResponseCaching();
+            services.ConfigureHttpCacheHeaders();
 
             services.AddControllers(config =>
             {
                 config.RespectBrowserAcceptHeader = true;   //telling the server to respect the Accept header
                 config.ReturnHttpNotAcceptable = true;  //tells the server to return the 406 Not Acceptable status code if the client tries to negotiate for media type it doesn't suuport
                 //config.Filters.Add(new GlobalFilterExample());
+                config.CacheProfiles.Add("120SecondsDuration", new CacheProfile { Duration = 120 });    //using CacheProfiles to extract ResponseCacheAttribute properties
             }).AddNewtonsoftJson()
             .AddXmlDataContractSerializerFormatters()   //tell the server to support XML formatters.
             .AddCustomCSVFormatter();
@@ -81,6 +84,10 @@ namespace ASP.NetCore3_Web_APIs
             {
                 ForwardedHeaders = ForwardedHeaders.All
             });
+
+            app.UseResponseCaching();
+
+            app.UseHttpCacheHeaders();
 
             app.UseRouting();
 
