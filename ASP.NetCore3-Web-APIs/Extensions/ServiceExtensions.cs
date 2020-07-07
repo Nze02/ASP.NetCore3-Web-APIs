@@ -93,7 +93,11 @@ namespace ASP.NetCore3_Web_APIs.Extensions
                 new RateLimitRule
                 {
                     Endpoint = "*",
+<<<<<<< HEAD
                     Limit = 30,
+=======
+                    Limit = 3,
+>>>>>>> 3c49106d7cd63df414bdf3a081b5aaafff194550
                     Period = "5m"
                 }
             }; services.Configure<IpRateLimitOptions>(opt =>
@@ -105,6 +109,7 @@ namespace ASP.NetCore3_Web_APIs.Extensions
             services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
             services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
         }
+<<<<<<< HEAD
 
         public static void ConfigureIdentity(this IServiceCollection services)
         {
@@ -147,5 +152,7 @@ namespace ASP.NetCore3_Web_APIs.Extensions
                 };
             });
         }
+=======
+>>>>>>> 3c49106d7cd63df414bdf3a081b5aaafff194550
     }
 }

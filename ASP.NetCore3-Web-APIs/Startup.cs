@@ -44,11 +44,17 @@ namespace ASP.NetCore3_Web_APIs
             services.ConfigureResponseCaching();
             services.ConfigureHttpCacheHeaders();
             services.AddMemoryCache();  //Rate Limiting uses a memory cache to store its counters and rules
+<<<<<<< HEAD
             services.ConfigureRateLimitingOptions();
             services.AddHttpContextAccessor();
             services.AddAuthentication();
             services.ConfigureIdentity();
             services.ConfigureJWT(Configuration);
+=======
+            
+            services.ConfigureRateLimitingOptions();
+            services.AddHttpContextAccessor();
+>>>>>>> 3c49106d7cd63df414bdf3a081b5aaafff194550
 
             services.AddControllers(config =>
             {
@@ -96,7 +102,11 @@ namespace ASP.NetCore3_Web_APIs
 
             app.UseHttpCacheHeaders();
 
+<<<<<<< HEAD
             app.UseIpRateLimiting();
+=======
+            pp.UseIpRateLimiting();
+>>>>>>> 3c49106d7cd63df414bdf3a081b5aaafff194550
 
             app.UseRouting();
 
