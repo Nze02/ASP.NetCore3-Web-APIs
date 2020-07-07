@@ -51,6 +51,7 @@ namespace ASP.NetCore3_Web_APIs
             services.ConfigureIdentity();
             services.ConfigureJWT(Configuration);
             services.AddScoped<IAuthenticationManager, AuthenticationManager>();
+            services.ConfigureSwagger();
 
             services.AddControllers(config =>
             {
@@ -112,6 +113,14 @@ namespace ASP.NetCore3_Web_APIs
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=index}/{id?}");
+            });
+
+
+            app.UseSwagger();
+            app.UseSwaggerUI(s =>
+            {
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Code Maze API v1");
+                s.SwaggerEndpoint("/swagger/v2/swagger.json", "Code Maze API v2");
             });
         }
     }

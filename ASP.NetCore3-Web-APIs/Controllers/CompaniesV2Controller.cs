@@ -12,6 +12,7 @@ namespace ASP.NetCore3_Web_APIs.Controllers
     //[ApiVersion("2.0")]
     [Route("api/companies")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "v2")]
     public class CompaniesV2Controller : ControllerBase
     {
         private readonly IRepositoryManager _repository;
@@ -21,6 +22,7 @@ namespace ASP.NetCore3_Web_APIs.Controllers
             _repository = repository;
         }
 
+        [HttpGet]
         public async Task<IActionResult> GetCompanies()
         {
             var companies = await _repository.Company.GetAllCompaniesAsync(trackChanges: false);
