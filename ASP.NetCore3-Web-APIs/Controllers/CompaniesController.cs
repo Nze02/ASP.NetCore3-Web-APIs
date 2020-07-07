@@ -11,6 +11,7 @@ using Entities.Models;
 using ASP.NetCore3_Web_APIs.ModelBinders;
 using ASP.NetCore3_Web_APIs.ActionFilters;
 using Marvin.Cache.Headers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASP.NetCore3_Web_APIs.Controllers
 {
@@ -33,7 +34,7 @@ namespace ASP.NetCore3_Web_APIs.Controllers
 
 
         //getting all companies
-        [HttpGet]
+        [HttpGet(Name = "GetCompanies"), Authorize]
         public async Task<IActionResult> GetCompanies()
         {
             var companies = await _repository.Company.GetAllCompaniesAsync(trackChanges: false);

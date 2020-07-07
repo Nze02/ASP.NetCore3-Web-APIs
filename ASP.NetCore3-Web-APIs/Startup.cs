@@ -48,6 +48,7 @@ namespace ASP.NetCore3_Web_APIs
             services.AddHttpContextAccessor();
             services.AddAuthentication();
             services.ConfigureIdentity();
+            services.ConfigureJWT(Configuration);
 
             services.AddControllers(config =>
             {
