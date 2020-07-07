@@ -34,7 +34,7 @@ namespace ASP.NetCore3_Web_APIs.Controllers
 
 
         //getting all companies
-        [HttpGet(Name = "GetCompanies"), Authorize]
+        [HttpGet(Name = "GetCompanies"), Authorize(Roles = "Manager")]
         public async Task<IActionResult> GetCompanies()
         {
             var companies = await _repository.Company.GetAllCompaniesAsync(trackChanges: false);

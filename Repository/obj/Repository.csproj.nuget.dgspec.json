@@ -191,6 +191,10 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.7.1, )"
+            },
             "System.Linq": {
               "target": "Package",
               "version": "[4.3.0, )"
