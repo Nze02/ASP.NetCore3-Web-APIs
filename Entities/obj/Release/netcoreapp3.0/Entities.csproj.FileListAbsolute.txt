@@ -1,0 +1,10 @@
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Entities\bin\Release\netcoreapp3.0\Entities.deps.json
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Entities\bin\Release\netcoreapp3.0\Entities.runtimeconfig.json
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Entities\bin\Release\netcoreapp3.0\Entities.runtimeconfig.dev.json
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Entities\bin\Release\netcoreapp3.0\Entities.dll
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Entities\bin\Release\netcoreapp3.0\Entities.pdb
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Entities\obj\Release\netcoreapp3.0\Entities.csprojAssemblyReference.cache
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Entities\obj\Release\netcoreapp3.0\Entities.AssemblyInfoInputs.cache
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Entities\obj\Release\netcoreapp3.0\Entities.AssemblyInfo.cs
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Entities\obj\Release\netcoreapp3.0\Entities.dll
+C:\Users\Emmanuel Nzekwe\source\repos\ASP.NetCore3-Web-APIs\Entities\obj\Release\netcoreapp3.0\Entities.pdb
